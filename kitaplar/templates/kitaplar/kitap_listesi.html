@@ -1,0 +1,18 @@
+<ul class="list-group">
+  {% for kitap in kitaplar %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        <strong>{{ kitap.isim }}</strong>
+        <span class="text-muted">— {{ kitap.yazar }}</span>
+      </div>
+      <a href="{% url 'sepete_ekle' kitap.id %}" class="btn btn-sm btn-primary">
+        Sepete Ekle
+      </a>
+    </li>
+  {% empty %}
+    <li class="list-group-item">Henüz eklenmiş kitap yok.</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'sepetim' %}" class="btn btn-sm btn-success">
+  Sepetimi Görüntüle
+</a>

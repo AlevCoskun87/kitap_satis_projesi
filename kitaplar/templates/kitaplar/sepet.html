@@ -1,0 +1,43 @@
+{% extends 'kitaplar/base.html' %}
+
+{% block title %}Sepetim{% endblock %}
+
+{% block content %}
+<h2>Sepetiniz</h2>
+
+{% if sepet_urunleri %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Kitap</th>
+      <th>Adet</th>
+      <th>Fiyat</th>
+      <th>Toplam</th>
+      <th>İşlemler</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in sepet_urunleri %}
+    <tr>
+      <td>{{ item.kitap.baslik }}</td>
+      <td>{{ item.adet }}</td>
+      <td>{{ item.kitap.fiyat }} TL</td>
+      <td>{{ item.adet }} x {{ item.kitap.fiyat }} = {{ item.toplam }} TL</td>
+      <td>
+        <a href="{% url 'adet_arttir' item.id %}" class="btn btn-sm btn-success">+</a>
+        <a href="{% url 'adet_azalt' item.id %}" class="btn btn-sm btn-warning">-</a>
+        <a href="{% url 'sepetten_sil' item.id %}" class="btn btn-sm btn-danger">Sil</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<p>Toplam: {{ toplam_fiyat }} TL</p>
+
+<a href="{% url 'odeme_yap' %}" class="btn btn-primary">Ödeme Yap</a>
+
+{% else %}
+<p>Sepetiniz boş.</p>
+{% endif %}
+
+{% endblock %}

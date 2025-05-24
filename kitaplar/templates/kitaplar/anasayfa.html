@@ -1,0 +1,25 @@
+{% extends 'kitaplar/base.html' %}
+
+{% block title %}Anasayfa - Kitap Sepeti{% endblock %}
+
+{% block content %}
+
+<div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+  {% for kitap in kitaplar %}
+  <div class="col">
+    <div class="card h-100">
+      <img src="{{ kitap.resim.url }}" class="card-img-top" alt="{{ kitap.baslik }}" style="height: 200px; object-fit: contain;">
+      <div class="card-body">
+        <h5 class="card-title">{{ kitap.baslik }}</h5>
+        <p class="card-text">Yazar: {{ kitap.yazar }}</p>
+        <p class="card-text fw-bold">Fiyat: {{ kitap.fiyat }} TL</p>
+        <a href="{% url 'sepete_ekle' kitap.id %}" class="btn btn-primary">Sepete Ekle</a>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <p>Henüz kitap yok.</p>
+  {% endfor %}
+</div>
+{% endblock %}
+

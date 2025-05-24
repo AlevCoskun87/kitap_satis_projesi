@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <h2>Bir hata oluştu!</h2>
+    <p>{{ mesaj }}</p>
+    <a href="{% url 'anasayfa' %}" class="btn btn-primary">Anasayfaya Dön</a>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+<h2>Ödeme Sayfası</h2>
+<p>Toplam Tutar: {{ toplam }} TL</p>
+
+<form method="post">
+  {% csrf_token %}
+  
+  <label>Ödeme Yöntemi:</label><br>
+  <input type="radio" name="odeme_yontemi" value="kredi_karti" required> Kredi Kartı<br>
+  <input type="radio" name="odeme_yontemi" value="havale"> Havale / EFT<br>
+  <input type="radio" name="odeme_yontemi" value="kapida_odeme"> Kapıda Ödeme<br><br>
+
+  <button type="submit">Ödemeyi Tamamla</button>
+</form>
